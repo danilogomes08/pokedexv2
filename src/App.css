@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+.App {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background-image: linear-gradient(to right, #5cb9ff , #0c90d2);
+  font-family: 'Poppins', sans-serif;
+}
+
+.Cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
