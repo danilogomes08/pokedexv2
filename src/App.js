@@ -7,10 +7,12 @@ import Cards from './components/Cards/Cards'
 function App() {
 
   const [api, setApi] = useState([]);
+  const [count, setCount] = useState(0)
+  const limit = 20;
 
   const getApiData = async () => {
       const pokeIds = [];
-      for (var i = 0 + 1; i <= 700; i++) {
+      for (var i = count + 1; i <= limit + count; i++) {
         pokeIds.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
       }
       await Promise.all(pokeIds.map((pokeId) => fetch(pokeId)))
@@ -19,10 +21,11 @@ function App() {
           setApi([...api, ...res]);
         });
     }
-    
+
     useEffect(() => {
       getApiData();
-    }, []);
+    }, [count]);
+  
 
   return (
     <div className="App">
@@ -38,6 +41,9 @@ function App() {
               type={item.types}
             />
           ))}
+        </div>
+        <div className="Button">
+            <button onClick={() => setCount(count + limit)}> MORE </button>
         </div>
     </div>
   );
