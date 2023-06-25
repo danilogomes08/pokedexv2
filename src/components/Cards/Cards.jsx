@@ -13,8 +13,8 @@ const Cards = props => {
 	}
 
     return (
-        <div className="Card">
-            <p>#{props.id} </p>
+        <div className={`Card ${props.typePokemon}`}>
+            <p>#{props.id}</p>
             <div>
                 <img src={props.img} />
             </div>

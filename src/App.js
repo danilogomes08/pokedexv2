@@ -22,9 +22,40 @@ function App() {
         });
     }
 
-    useEffect(() => {
-      getApiData();
-    }, [count]);
+  const more = () => {
+    setCount(count + limit)
+  }
+
+  const previus = () => {
+    setCount(count - limit)
+    setApi(api.splice(0, 20))
+  }
+
+  useEffect(() => {
+    getApiData();
+  }, [count]);
+
+    const typePokemon = () => {
+      if (api.type === "fairy") return "Fairy"
+      if (api.type === "steel") return "Steel"
+      if (api.type === "dark") return "Dark"
+      if (api.type === "dragon") return "Dragon"
+      if (api.type === "ghost") return "Ghost"
+      if (api.type === "rock") return "Rock"
+      if (api.type === "bug") return "Bug"
+      if (api.type === "psychic") return "Psychic"
+      if (api.type === "ground") return "Ground"
+      if (api.type === "poison") return "Poison"
+      if (api.type === "fighting") return "Fighting"
+      if (api.type === "ice") return "Ice"
+      if (api.type === "grass") return "Grass"
+      if (api.type === "electric") return "Electric"
+      if (api.type === "normal") return "Normal"
+      if (api.type === "water") return "Water"
+      if (api.type === "fire") return "Fire"
+  
+      return ""
+    }
   
 
   return (
@@ -39,11 +70,13 @@ function App() {
               : item.sprites.front_default}
               id={item.id}
               type={item.types}
+              typePokemon={typePokemon()}
             />
           ))}
         </div>
         <div className="Button">
-            <button onClick={() => setCount(count + limit)}> MORE </button>
+            <button onClick={() => previus()}> PREVIUS </button>
+            <button onClick={() => more()}> MORE </button>
         </div>
     </div>
   );
