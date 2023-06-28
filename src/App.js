@@ -1,8 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react'
+import Pokedex from './img/pokedex-logo.png'
 
 import Cards from './components/Cards/Cards'
+import Buttons from './components/Buttons/Buttons'
+import Footer from './components/Footer/Footer'
 
 function App() {
 
@@ -22,26 +25,34 @@ function App() {
       });
   }
 
-  const more = () => {
-    setCount(count + limit)
-
+  const next = () => {
+    if (count < 1000) {
+      setCount(count + limit)
+    } else  {
+      return false
+    }
   }
 
   const previus = () => {
-    setCount(count - limit)
-    setApi(api.splice(0, limit))
+    if (count > 0) {
+      setCount(count - limit)
+      setApi(api.splice(0, limit))
+    } else {
+      return false
+    }
   }
 
   useEffect(() => {
     getApiData();
   }, [count]);
 
-
-  
-
   return (
     <div className="App">
-        <h1> POKEDEX V2</h1>
+        
+        <div className="Logo">
+          <img src={Pokedex} />
+        </div>
+
         <div className="Cards">
           {api.map((item, index) => (
             <Cards 
@@ -55,10 +66,13 @@ function App() {
             />
           ))}
         </div>
+
         <div className="Button">
-            <button onClick={() => previus()}> PREVIUS </button>
-            <button onClick={() => more()}> MORE </button>
+          <Buttons function={previus} buttonName="PREVIUS" />
+          <Buttons function={next} buttonName="NEXT" />
         </div>
+
+        <Footer />
     </div>
   );
 }
